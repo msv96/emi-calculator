@@ -1,24 +1,24 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 // Component Imports
-import Header from '@/components/Header.astro';
-import Home from '@/components/pages/Home.tsx';
-
+import Header from "@/components/common/Header.astro";
+import Home from "@/components/pages/Home.tsx";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>EMI Calculator</title>
+    <meta name="description" content="EMI Calculator build with Astro">
+  </head>
 
-	<body>
-		<Header />
-		<div class="grid place-items-center h-screen content-center">
-			<Home />
-		</div>
-	</body>
+  <body style="font-family: cursive;">
+    <Header />
+    <div class="grid place-items-center content-center pt-10 sm:pt-20">
+      <Home client:load />
+    </div>
+  </body>
 </html>
