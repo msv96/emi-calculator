@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { NumericFormat, numericFormatter } from "react-number-format";
+import { numericFormatter } from "react-number-format";
 import { Card, CardContent, CardFooter } from "../ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { Slider } from "../ui/slider";
@@ -52,26 +52,28 @@ const Home = () => {
                 <FormItem className="flex flex-col gap-6">
                   <div className="flex justify-between">
                     <FormLabel>Loan amount</FormLabel>
-                    <NumericFormat
-                      allowNegative={false}
-                      thousandSeparator
-                      thousandsGroupStyle="lakh"
-                      prefix="₹ "
-                      className="w-30 px-2 bg-slate-100 rounded-xs"
-                      step={1000}
-                      min={1000}
-                      max={10000000}
-                      value={field.value}
-                      onChange={(e) => {
-                        field.onChange(e);
-                        calculateEmi();
-                      }}
-                    />
+                    <div className="flex items-center gap-2 px-2 bg-slate-100 rounded-xs">
+                      <div className="text-sm">₹</div>
+                      <FormControl>
+                        <input
+                          type="number"
+                          className="w-20"
+                          step={10000}
+                          min={10000}
+                          max={10000000}
+                          {...field}
+                          onChange={(e) => {
+                            field.onChange(e);
+                            calculateEmi();
+                          }}
+                        />
+                      </FormControl>
+                    </div>
                   </div>
                   <FormControl>
                     <Slider
-                      step={1000}
-                      min={1000}
+                      step={10000}
+                      min={10000}
                       max={10000000}
                       value={[field.value]}
                       onValueChange={(value) => {
@@ -90,21 +92,19 @@ const Home = () => {
                 <FormItem className="flex flex-col gap-6">
                   <div className="flex justify-between">
                     <FormLabel>Rate of interest (p.a.)</FormLabel>
-                    <NumericFormat
-                      allowNegative={false}
-                      fixedDecimalScale
-                      decimalScale={1}
-                      suffix=" %"
-                      className="w-18 px-2 bg-slate-100 rounded-xs"
-                      step={0.1}
-                      min={1}
-                      max={30}
-                      value={field.value}
-                      onChange={(e) => {
-                        field.onChange(e);
-                        calculateEmi();
-                      }}
-                    />
+                    <FormControl>
+                      <input
+                        className="w-18 px-2 bg-slate-100 rounded-xs"
+                        step={0.1}
+                        min={1}
+                        max={30}
+                        {...field}
+                        onChange={(e) => {
+                          field.onChange(e);
+                          calculateEmi();
+                        }}
+                      />
+                    </FormControl>
                   </div>
                   <FormControl>
                     <Slider
@@ -128,19 +128,19 @@ const Home = () => {
                 <FormItem className="flex flex-col gap-6">
                   <div className="flex justify-between">
                     <FormLabel>Loan tenure</FormLabel>
-                    <NumericFormat
-                      allowNegative={false}
-                      suffix=" Yr"
-                      className="w-16 px-2 bg-slate-100 rounded-xs"
-                      step={1}
-                      min={1}
-                      max={30}
-                      value={field.value}
-                      onChange={(e) => {
-                        field.onChange(e);
-                        calculateEmi();
-                      }}
-                    />
+                    <FormControl>
+                      <input
+                        className="w-16 px-2 bg-slate-100 rounded-xs"
+                        step={1}
+                        min={1}
+                        max={30}
+                        {...field}
+                        onChange={(e) => {
+                          field.onChange(e);
+                          calculateEmi();
+                        }}
+                      />
+                    </FormControl>
                   </div>
                   <FormControl>
                     <Slider
